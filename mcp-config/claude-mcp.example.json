@@ -1,0 +1,76 @@
+{
+  "_comment": "Freeway Claude Code Toolkit — MCP 設定サンプル。install.ps1 / install.sh がこれを ~/.claude/mcp.json または プロジェクト .mcp.json にコピーする。API キーは別途 .env で設定。",
+
+  "mcpServers": {
+
+    "playwright": {
+      "_purpose": "Webブラウザ自動操作。じゃらん予約取得・競合サイトスクショ・新HP検証",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
+
+    "exa": {
+      "_purpose": "意味検索 (耳)。団体予約の法人リサーチ・競合分析・ダイビングメディア記事収集",
+      "command": "npx",
+      "args": ["-y", "exa-mcp-server"],
+      "env": {
+        "EXA_API_KEY": "${EXA_API_KEY}"
+      }
+    },
+
+    "context7": {
+      "_purpose": "ライブラリ最新docs (記憶の鮮度)。新HP開発時のNext.js最新版参照",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    },
+
+    "repomix": {
+      "_purpose": "コードベース全体把握 (理解力)。freeway-demo既存コード解析",
+      "command": "npx",
+      "args": ["-y", "repomix", "--mcp"]
+    },
+
+    "document-skills": {
+      "_purpose": "PDF/Word/Excel/PPT生成 (手)。請求書・月次報告・契約書・カルテPDF",
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/document-skills"]
+    },
+
+    "google-sheets": {
+      "_purpose": "顧客マスター・予約台帳 読み書き (中核)。本パッケージ最重要MCP",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-sheets"],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "${HOME}/.claude/freeway-google-credentials.json",
+        "GOOGLE_SHEETS_ID": "${FREEWAY_SHEETS_ID}"
+      }
+    },
+
+    "google-calendar": {
+      "_purpose": "休業日・予約反映",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-calendar"],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "${HOME}/.claude/freeway-google-credentials.json"
+      }
+    },
+
+    "google-drive": {
+      "_purpose": "PDF・写真の格納・検索",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-drive"],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "${HOME}/.claude/freeway-google-credentials.json"
+      }
+    }
+  },
+
+  "_setup_notes": [
+    "1. EXA_API_KEY を https://exa.ai で取得して .env に設定",
+    "2. Google サービスアカウント JSON を Google Cloud Console で作成 → ~/.claude/freeway-google-credentials.json に配置",
+    "3. Google Sheets を該当サービスアカウントに編集権限で共有",
+    "4. FREEWAY_SHEETS_ID を .env に設定 (Sheets URL の /d/ 以降の文字列)",
+    "5. install.ps1 / install.sh がこのファイルをコピーし、必要なツールを npm 経由でインストールする",
+    "6. 各 MCP のパッケージ名は 2026-05-28 時点の想定。実際は 5/28-29 で動作確認"
+  ]
+}

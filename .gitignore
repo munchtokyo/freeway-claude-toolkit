@@ -1,0 +1,44 @@
+# 顧客個人情報・実データ
+customers/
+real-data/
+*.csv
+!templates/*.csv
+*.xlsx
+!templates/*.xlsx
+
+# 認証情報・API キー
+.env
+.env.*
+credentials.json
+token.json
+service-account*.json
+*.pem
+*.key
+
+# ログ・キャッシュ
+logs/
+*.log
+.cache/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# Node / npm
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# Python
+venv/
+.venv/
+*.egg-info/
+
+# Claude Code
+.claude/cache/
+.claude/session/
+
+# IDE
+.vscode/
+.idea/
+*.swp
