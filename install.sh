@@ -77,12 +77,32 @@ fi
 
 # 5. Playwright
 echo ""
-echo -e "${yellow}[5/6] Playwright ブラウザ...${nc}"
+echo -e "${yellow}[5/7] Playwright ブラウザ...${nc}"
 npx -y playwright install chromium
 
-# 6. 完了
+# 6. OS 層配置 (hooks/rules/skills/memory) を ~/.claude/ にコピー
 echo ""
-echo -e "${green}[6/6] セットアップ完了${nc}"
+echo -e "${yellow}[6/7] OS 層を ~/.claude/ に配置...${nc}"
+mkdir -p "$HOME/.claude/hooks" "$HOME/.claude/rules" "$HOME/.claude/skills" "$HOME/.claude/memory"
+
+cp -r "$SCRIPT_DIR/hooks/"* "$HOME/.claude/hooks/" 2>/dev/null || true
+chmod +x "$HOME/.claude/hooks/"*.sh 2>/dev/null || true
+echo -e "  ${green}hooks 配置${nc} (save-session / load-session / learning-observer / governance-capture など)"
+
+cp -r "$SCRIPT_DIR/rules/"* "$HOME/.claude/rules/" 2>/dev/null || true
+echo -e "  ${green}rules 配置${nc} (edit-policy / factcheck / no-dashes / safety / security-discipline + Freeway 専用 2 本)"
+
+cp -r "$SCRIPT_DIR/skills/"* "$HOME/.claude/skills/" 2>/dev/null || true
+echo -e "  ${green}skills 配置${nc} (skill-creator / self-improving-agent + 業務スキル 6 本)"
+
+if [ ! -f "$HOME/.claude/memory/MEMORY.md" ]; then
+    cp "$SCRIPT_DIR/memory/MEMORY.md.template" "$HOME/.claude/memory/MEMORY.md" 2>/dev/null || true
+    echo -e "  ${green}MEMORY.md 初期化${nc}"
+fi
+
+# 7. 完了
+echo ""
+echo -e "${green}[7/7] セットアップ完了${nc}"
 echo -e "${cyan}==========================================================${nc}"
 echo ""
 echo -e "${cyan}次のステップ:${nc}"

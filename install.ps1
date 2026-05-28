@@ -78,12 +78,36 @@ FREEWAY_SHEETS_ID=
 
 # 5. Playwright ブラウザのインストール
 Write-Host ""
-Write-Host "[5/6] Playwright ブラウザ..." -ForegroundColor Yellow
+Write-Host "[5/7] Playwright ブラウザ..." -ForegroundColor Yellow
 npx -y playwright install chromium
 
-# 6. 動作確認案内
+# 6. OS 層配置 (hooks/rules/skills/memory) を ~/.claude/ にコピー
 Write-Host ""
-Write-Host "[6/6] セットアップ完了" -ForegroundColor Green
+Write-Host "[6/7] OS 層を ~/.claude/ に配置..." -ForegroundColor Yellow
+$claudeHooks  = "$env:USERPROFILE\.claude\hooks"
+$claudeRules  = "$env:USERPROFILE\.claude\rules"
+$claudeSkills = "$env:USERPROFILE\.claude\skills"
+$claudeMemory = "$env:USERPROFILE\.claude\memory"
+
+New-Item -ItemType Directory -Force -Path $claudeHooks,$claudeRules,$claudeSkills,$claudeMemory | Out-Null
+
+Copy-Item -Recurse -Force "$PSScriptRoot\hooks\*" $claudeHooks
+Write-Host "  hooks 配置 (save-session / load-session / learning-observer / governance-capture など)" -ForegroundColor Green
+
+Copy-Item -Recurse -Force "$PSScriptRoot\rules\*" $claudeRules
+Write-Host "  rules 配置 (edit-policy / factcheck / no-dashes / safety / security-discipline + Freeway 専用 2 本)" -ForegroundColor Green
+
+Copy-Item -Recurse -Force "$PSScriptRoot\skills\*" $claudeSkills
+Write-Host "  skills 配置 (skill-creator / self-improving-agent + 業務スキル 6 本)" -ForegroundColor Green
+
+if (-not (Test-Path "$claudeMemory\MEMORY.md")) {
+    Copy-Item "$PSScriptRoot\memory\MEMORY.md.template" "$claudeMemory\MEMORY.md"
+    Write-Host "  MEMORY.md 初期化" -ForegroundColor Green
+}
+
+# 7. 動作確認案内
+Write-Host ""
+Write-Host "[7/7] セットアップ完了" -ForegroundColor Green
 Write-Host "==========================================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "次のステップ:" -ForegroundColor Cyan

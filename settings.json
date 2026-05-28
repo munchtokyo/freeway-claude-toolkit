@@ -1,43 +1,106 @@
 {
-  "_comment": "Freeway Claude Code Toolkit プロジェクト設定。Claude Code がこのリポで作業する時の権限・hooks 等",
-
-  "permissions": {
-    "allow": [
-      "Read",
-      "Write",
-      "Edit",
-      "Glob",
-      "Grep",
-      "Bash(npm:*)",
-      "Bash(npx:*)",
-      "Bash(node:*)",
-      "Bash(python3:*)",
-      "Bash(pip:*)",
-      "Bash(git status)",
-      "Bash(git diff:*)",
-      "Bash(git log:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(ls:*)",
-      "Bash(cat:*)",
-      "Bash(grep:*)",
-      "Bash(find:*)",
-      "WebFetch",
-      "WebSearch"
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/load-session-summary.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/health-check.sh",
+            "timeout": 10
+          }
+        ]
+      }
     ],
-    "deny": [
-      "Bash(rm -rf:*)",
-      "Bash(git push --force:*)",
-      "Bash(curl:* https://* -d:*)"
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/save-session-summary.sh",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/cleanup.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/learning-observer.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/block-no-verify.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/governance-capture.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/doc-file-warning.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/pre-compact.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/suggest-compact.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/learning-observer.sh",
+            "timeout": 5
+          }
+        ]
+      }
     ]
   },
-
-  "_hooks_note": "hooks/ ディレクトリのスクリプトは初期コミット時点では未実装。実装後にここに登録する",
-
-  "_planned_hooks": {
-    "PreToolUse_Write_customers": "hooks/customer_data_guard.sh — customers/ 配下への書き込み前確認",
-    "PreToolUse_Bash_curl": "hooks/external_send_guard.sh — 外部 POST 前の承認確認",
-    "SessionStart": "hooks/auto_memory.sh — auto-memory 読み込み",
-    "PostToolUse": "hooks/audit_log.sh — 操作ログを logs/ に記録"
-  }
+  "language": "Japanese",
+  "effortLevel": "high"
 }
