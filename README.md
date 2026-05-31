@@ -29,6 +29,8 @@
 含まれているもの:
 
 - **マスト 5 選 MCP** (Playwright / Exa / Context7 / Repomix / Document Skills)
+- **Document Skills 本体同梱** (`skills/pdf` `skills/docx` `skills/xlsx` `skills/pptx`)。Word / Excel / PowerPoint / PDF を成果物として直接生成・編集・読み取りできる。Microsoft Office 中心のフリーウェイ業務でそのまま使える
+- **PowerPoint 作成ルール** (`rules/powerpoint-composition.md`)。読みやすい文章・崩れないレイアウト・python-pptx の技術ノウハウを蓄積。**配色やデザインの趣味はあえて入れていない** (見た目は皆様が決める前提)
 - **Google 系 MCP の設定サンプル** (Sheets / Calendar / Drive)
 - **学習教材** (川島マスト 5 選を NotebookLM で音声化して聞ける)
 - **顧客情報を守る 5 箇条**
@@ -37,6 +39,7 @@
 **含まれていないもの (意図的)**:
 
 - 業務スキル本体 (`/予約まとめ` `/前日連絡` `/カルテ` 等) は**作っていません**。スキル候補のアイデアだけ `docs/04_skill_ideas.md` にあります。**皆様の手で `/skill-creator` を使って作っていく前提**
+- スライドの**配色・デザインの趣味・ロゴの見せ方**は入れていません。`rules/powerpoint-composition.md` は文章と作り方 (技術) だけ。見た目はフリーウェイの皆様が自由に決めてください
 
 ---
 

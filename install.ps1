@@ -95,10 +95,10 @@ Copy-Item -Recurse -Force "$PSScriptRoot\hooks\*" $claudeHooks
 Write-Host "  hooks 配置 (save-session / load-session / learning-observer / governance-capture など)" -ForegroundColor Green
 
 Copy-Item -Recurse -Force "$PSScriptRoot\rules\*" $claudeRules
-Write-Host "  rules 配置 (edit-policy / factcheck / no-dashes / safety / security-discipline + Freeway 専用 2 本)" -ForegroundColor Green
+Write-Host "  rules 配置 (edit-policy / factcheck / no-dashes / safety / security-discipline / powerpoint-composition + Freeway 専用 2 本)" -ForegroundColor Green
 
 Copy-Item -Recurse -Force "$PSScriptRoot\skills\*" $claudeSkills
-Write-Host "  skills 配置 (skill-creator / self-improving-agent + 業務スキル 6 本)" -ForegroundColor Green
+Write-Host "  skills 配置 (skill-creator / self-improving-agent + Document Skills: pdf / docx / xlsx / pptx)" -ForegroundColor Green
 
 if (-not (Test-Path "$claudeMemory\MEMORY.md")) {
     Copy-Item "$PSScriptRoot\memory\MEMORY.md.template" "$claudeMemory\MEMORY.md"
