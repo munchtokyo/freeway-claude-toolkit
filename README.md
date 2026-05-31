@@ -31,6 +31,8 @@
 - **マスト 5 選 MCP** (Playwright / Exa / Context7 / Repomix / Document Skills)
 - **Document Skills 本体同梱** (`skills/pdf` `skills/docx` `skills/xlsx` `skills/pptx`)。Word / Excel / PowerPoint / PDF を成果物として直接生成・編集・読み取りできる。Microsoft Office 中心のフリーウェイ業務でそのまま使える
 - **PowerPoint 作成ルール** (`rules/powerpoint-composition.md`)。読みやすい文章・崩れないレイアウト・python-pptx の技術ノウハウを蓄積。**配色やデザインの趣味はあえて入れていない** (見た目は皆様が決める前提)
+- **humanizer スキル** (`skills/humanizer`)。AI が書いた文章を、人が書いた自然な文章に整える。新潟店のメール返信で「丁寧な文章を AI に手伝ってもらう」時に効く
+- **メール返信プレイブック** (`docs/11_email_reply_playbook.md`)。新潟店の実態 (矢吹さん聞き取り) ベース。コース説明・予約受付・初心者対応・悪天候中止の返信テンプレ + AI 下書きから humanizer で整える流れ
 - **Google 系 MCP の設定サンプル** (Sheets / Calendar / Drive)
 - **学習教材** (川島マスト 5 選を NotebookLM で音声化して聞ける)
 - **顧客情報を守る 5 箇条**

@@ -93,7 +93,7 @@ cp -r "$SCRIPT_DIR/rules/"* "$HOME/.claude/rules/" 2>/dev/null || true
 echo -e "  ${green}rules 配置${nc} (edit-policy / factcheck / no-dashes / safety / security-discipline / powerpoint-composition + Freeway 専用 2 本)"
 
 cp -r "$SCRIPT_DIR/skills/"* "$HOME/.claude/skills/" 2>/dev/null || true
-echo -e "  ${green}skills 配置${nc} (skill-creator / self-improving-agent + Document Skills: pdf / docx / xlsx / pptx)"
+echo -e "  ${green}skills 配置${nc} (skill-creator / self-improving-agent / humanizer + Document Skills: pdf / docx / xlsx / pptx)"
 
 if [ ! -f "$HOME/.claude/memory/MEMORY.md" ]; then
     cp "$SCRIPT_DIR/memory/MEMORY.md.template" "$HOME/.claude/memory/MEMORY.md" 2>/dev/null || true
