@@ -33,6 +33,7 @@
 - **PowerPoint 作成ルール** (`rules/powerpoint-composition.md`)。読みやすい文章・崩れないレイアウト・python-pptx の技術ノウハウを蓄積。**配色やデザインの趣味はあえて入れていない** (見た目は皆様が決める前提)
 - **humanizer スキル** (`skills/humanizer`)。AI が書いた文章を、人が書いた自然な文章に整える。新潟店のメール返信で「丁寧な文章を AI に手伝ってもらう」時に効く
 - **メール返信プレイブック** (`docs/11_email_reply_playbook.md`)。新潟店の実態 (矢吹さん聞き取り) ベース。コース説明・予約受付・初心者対応・悪天候中止の返信テンプレ + AI 下書きから humanizer で整える流れ
+- **通話ログスキル** (`skills/call-log`)。固定電話や LINE 通話の録音をローカルで文字起こしして、Excel の通話ログ台帳に 1 行追記する。音声はネットに出ない。月額ゼロ。現実性の検討は `docs/12_call_transcription.md`
 - **Google 系 MCP の設定サンプル** (Sheets / Calendar / Drive)
 - **学習教材** (川島マスト 5 選を NotebookLM で音声化して聞ける)
 - **顧客情報を守る 5 箇条**
@@ -128,11 +129,13 @@ freeway-claude-toolkit/
 │   ├── 01_must5_claude_code.md  # 川島マスト 5 選教材 (NotebookLM 用)
 │   ├── 02_workflow_examples.md
 │   ├── 03_security_basics.md
-│   └── 04_skill_ideas.md        # スキル候補メモ (本体は未実装)
+│   ├── 04_skill_ideas.md        # スキル候補メモ (本体は未実装)
+│   └── 12_call_transcription.md # 通話の文字起こしは現実的か (機材・費用・法務)
 │
 ├── skills/                    # OS 層スキル (汎用)
 │   ├── skill-creator/         # 新スキル作成支援 (Anthropic 公式)
-│   └── self-improving-agent/  # メモリ整理・パターン抽出
+│   ├── self-improving-agent/  # メモリ整理・パターン抽出
+│   └── call-log/              # 通話録音 → 文字起こし → Excel 台帳
 │
 ├── mcp-config/                # MCP 設定サンプル
 ├── hooks/                     # save-session / auto-memory 系
@@ -147,7 +150,8 @@ freeway-claude-toolkit/
 - ✅ リポ作成・OS 層配置
 - ✅ 教材同梱
 - ✅ MCP 設定サンプル
-- ⏸ **業務スキル本体: 意図的に未作成** (皆様の手で `/skill-creator` で作る)
+- ⏸ **業務スキル本体: 原則として未作成** (皆様の手で `/skill-creator` で作る)
+- ✅ 例外 1 本: `skills/call-log` (通話の文字起こし)。「そもそも現実的か」を確かめるために動くところまで作った叩き台。名前も列構成も書き換えて構いません
 - 🚧 **CLAUDE.md は叩き台**: 訪問中の対話で皆様が書き加える
 
 5/28-31 の訪問中に CLAUDE.md を読み合わせし、皆様の業務文脈で書き換えていきます。

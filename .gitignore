@@ -6,6 +6,18 @@ real-data/
 *.xlsx
 !templates/*.xlsx
 
+# 通話録音・文字起こし (顧客の音声と会話内容。絶対に git に乗せない)
+recordings/
+transcripts/
+通話ログ.xlsx
+*.wav
+*.mp3
+*.m4a
+*.aac
+*.flac
+*.opus
+*.amr
+
 # 認証情報・API キー
 .env
 .env.*
